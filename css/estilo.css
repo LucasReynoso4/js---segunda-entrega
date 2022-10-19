@@ -1,0 +1,17 @@
+
+.colorHeader{
+    background-color: rgb(161, 15, 15);
+    
+}
+
+button{
+    border: 1px solid rgb(161, 15, 15); 
+  padding: 10px; 
+  background-color: rgb(161, 15, 15); 
+  color: #ffffff; 
+  text-decoration: none; 
+  text-transform: uppercase; 
+  font-family: 'Helvetica', sans-serif; 
+  border-radius: 50px; 
+  
+  }
