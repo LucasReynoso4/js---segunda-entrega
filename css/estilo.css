@@ -1,3 +1,9 @@
+*{
+    margin: 0;
+    padding: 0;
+    
+  }
+
 
 .colorHeader{
     background-color: rgb(161, 15, 15);
@@ -5,9 +11,9 @@
 }
 
 button{
-    border: 1px solid rgb(161, 15, 15); 
+    border: 1px solid rgb(27, 61, 216); 
   padding: 10px; 
-  background-color: rgb(161, 15, 15); 
+  background-color:  rgb(27, 61, 216); 
   color: #ffffff; 
   text-decoration: none; 
   text-transform: uppercase; 
