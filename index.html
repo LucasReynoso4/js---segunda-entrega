@@ -11,6 +11,9 @@
     rel="stylesheet"
     integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
     crossorigin="anonymous"/>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/luxon@2.3.0/build/global/luxon.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <title>Segunda entrega Java script</title>
 </head>
 <body>
@@ -42,10 +45,16 @@
         </nav>
       </header>
 
-      <main id="contenedor-productos">
-
-
-      </main>
+      <div class="container">
+        <div id="fila_prueba" style="background-color:#aaa">
+        </div>
+        
+        <div>
+            <div id="misprods" class="row">
+                <!-- Aqui los productos -->
+            </div>
+            
+        </div>
 
 
       <div>
@@ -63,9 +72,10 @@
             </tbody>
         </table>
         <h4 id="total">Total a pagar $:</h4>
-        <button id="boton-comprar"> Comprar </button>
     </div>
-    <!-- FOOTER -->
+      <button id="finalizar" >Finalizar compra</button>
+    </div>
+      <!-- FOOTER -->
     
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top colorFooter">
       <div class="col-md-4 d-flex align-items-center">
@@ -91,6 +101,10 @@
     integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
     crossorigin="anonymous"
   ></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/luxon@2.3.0/build/global/luxon.min.js"></script>
   <script src="js/stock.js"></script>
   <script src="js/codigo.js"></script>
 </body>

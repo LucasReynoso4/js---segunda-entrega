@@ -1,47 +1,76 @@
-const carrito = [];
 let totalCarrito;
-const contenedorProductos = document.getElementById("contenedor-productos")
+let contenedor = document.getElementById("misprods");
+let botonFinalizar = document.getElementById("finalizar");
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+if(carrito.length != 0){
+    console.log("Recuperando carro")
+    dibujarTabla();
+}
 
+//LUXON
+const DateTime = luxon.DateTime;
+//momento en que se ingresa a la web
+const ahora = DateTime.now();
+console.log(ahora.toString());
+console.log(ahora.zoneName);
+console.log(ahora.daysInMonth);
+console.log(ahora.toLocaleString(DateTime.DATETIME_HUGE_WITH_SECONDS));
+const masTarde = ahora.plus({ hours: 5, minutes: 15 });
+console.log(masTarde.toLocaleString(DateTime.DATETIME_HUGE_WITH_SECONDS));
+
+function dibujarTabla(){
+    for(const producto of carrito){
+        document.getElementById("tablabody").innerHTML += `
+        <tr>
+            <td>${producto.id}</td>
+            <td>${producto.nombre}</td>
+            <td>${producto.precio}</td>
+        </tr>
+    `;
+    }
+    totalCarrito = carrito.reduce((acumulador,producto)=> acumulador + producto.precio,0);
+    let infoTotal = document.getElementById("total");
+    infoTotal.innerText="Total a pagar $: "+totalCarrito;
+}
 
 function renderizarProds(){
     for(const producto of productos){
-       contenedorProductos.innerHTML += ` <section class="py-5 text-center container"> 
-       <div class="album py-5 bg-light text-center">
-       <div class="container">
-       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3 r">
-       <div class="col ">
-       <div class="card shadow-sm ">
-       <img src=${producto.foto} class=class="bd-placeholder-img card-img-top" alt="...">
-       <div class="card-body ">
-           <h5 class="card-title">${producto.id}</h5>
-           <p class="card-text">${producto.nombre}</p>
-           <p class="card-text">$ ${producto.precio}</p>
-           <button id="btn${producto.id}" class="btn btn-primary">Añadir al carro</button>
-           <div class="d-flex justify-content-between align-items-center">
-           <div class="btn-group">
-       </div>
-   </div>
-       `   
+        contenedor.innerHTML += `
+            <div class="card col-sm-2">
+                <img src=${producto.foto} class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">${producto.id}</h5>
+                    <p class="card-text">${producto.nombre}</p>
+                    <p class="card-text">$ ${producto.precio}</p>
+                    <button id="btn${producto.id}" class="btn btn-primary">Comprar</button>
+                </div>
+            </div>
+        `;
     }
 
-
-
-
+    //EVENTOS
     productos.forEach(producto => {
+        //evento para cada boton
         document.getElementById(`btn${producto.id}`).addEventListener("click",function(){
             agregarAlCarrito(producto);
         });
     })
-
-
 }
 
-renderizarProds()
+renderizarProds();
 
 function agregarAlCarrito(productoComprado){
     carrito.push(productoComprado);
     console.table(carrito);
-    alert("Producto: "+productoComprado.nombre+" agregado al carrito!");
+    //alert("Producto: "+productoComprado.nombre+" agregado al carrito!");
+    //sweet alert
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Añadido al carro',
+        showConfirmButton: false,
+        timer: 1500
+      })
     document.getElementById("tablabody").innerHTML += `
         <tr>
             <td>${productoComprado.id}</td>
@@ -52,19 +81,23 @@ function agregarAlCarrito(productoComprado){
     totalCarrito = carrito.reduce((acumulador,producto)=> acumulador + producto.precio,0);
     let infoTotal = document.getElementById("total");
     infoTotal.innerText="Total a pagar $: "+totalCarrito;
+    //storage
+    localStorage.setItem("carrito",JSON.stringify(carrito));
 }
 
-    
+botonFinalizar.onclick = () => {
+    carrito = [];
+    document.getElementById("tablabody").innerHTML="";
+    let infoTotal = document.getElementById("total");
+    infoTotal.innerText="Total a pagar $: ";
+    Toastify({
+        text: "Pronto recibirá un mail de confirmacion",
+        duration: 3000,
+        gravity: 'bottom',
+        position: 'left',
+        style: {
+            background: 'linear-gradient(to right, #00b09b, #96c92d)'
+        }
+    }).showToast();
 
-/*const botonPagar = document.getElementById("boton-comprar")
-    botonPagar.addEventListener("click",function (){
-        vac
-
-        
-        
-    })
-
-
-//stockProductos.forEach((producto) =>  {
-//    const div = document
-*/
+}
