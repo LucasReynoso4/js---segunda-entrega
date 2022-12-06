@@ -10,6 +10,19 @@
     
 }
 
+h5 {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  text-align: center;
+}
+
+
+
+.imgCarousel {
+  height: 500px;
+  -o-object-fit: fill;
+     object-fit: fill;
+}
+
 button{
     border: 1px solid rgb(27, 61, 216); 
   padding: 10px; 
@@ -20,6 +33,12 @@ button{
   font-family: 'Helvetica', sans-serif; 
   border-radius: 50px; 
   
+  
+  }
+
+  .logo {
+    height: 80px;
+    margin-bottom: 1rem;
   }
 
   .colorFooter{

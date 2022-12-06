@@ -90,14 +90,37 @@ botonFinalizar.onclick = () => {
     document.getElementById("tablabody").innerHTML="";
     let infoTotal = document.getElementById("total");
     infoTotal.innerText="Total a pagar $: ";
+    let timerInterval
+Swal.fire({
+  title: 'Redirigiendo a Whatsapp',
+  html: 'Cierre automatico en <b></b>.',
+  timer: 2000,
+  timerProgressBar: true,
+  didOpen: () => {
+    Swal.showLoading()
+    const b = Swal.getHtmlContainer().querySelector('b')
+    timerInterval = setInterval(() => {
+      b.textContent = Swal.getTimerLeft()
+    }, 100)
+  },
+  willClose: () => {
+    clearInterval(timerInterval)
+  }
+}).then((result) => {
+  /* Read more about handling dismissals below */
+  if (result.dismiss === Swal.DismissReason.timer) {
+    console.log('I was closed by the timer')
+  }
+})
     Toastify({
-        text: "Pronto recibirá un mail de confirmacion",
-        duration: 3000,
+        text: "Procesando compra",
+        duration: 4000,
         gravity: 'bottom',
         position: 'left',
         style: {
             background: 'linear-gradient(to right, #00b09b, #96c92d)'
         }
+       
     }).showToast();
 
 }
